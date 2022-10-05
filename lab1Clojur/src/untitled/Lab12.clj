@@ -14,12 +14,10 @@
   (loop [sets-loop sets  new-sets-loop (list)]
     (if (empty? sets-loop)
       new-sets-loop
-      (recur (rest sets-loop) (concat new-sets-loop (add-head (first sets-loop) symbols)))
-      ))
-  )
+      (recur (rest sets-loop) (concat new-sets-loop (add-head (first sets-loop) symbols))))))
 
 (defn step [sets symbols n]
-  (if (= n 1)                                               ; rtqc gjabrcbnm
+  (if (not= n 0)
     (gen-step-set sets symbols)
     (recur (gen-step-set sets symbols) symbols (dec n))))
 
@@ -27,8 +25,6 @@
 (defn solve [symbols n]
   (if (not= n 0)
     (step (list(list)) symbols n)
-    ()
-    )
-  )
+    ()))
 
-(println (solve (list "a" "b" "c") 2))
+(println (solve (list "a" "b" "c") 5))
